@@ -20,12 +20,11 @@ public class ClienteController {
 
     private static final Logger logger = LoggerFactory.getLogger(ClienteController.class);
 
-    @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<Cliente> buscarClientePorNomeECpf(@RequestParam String nomeCliente,
-                                                            @RequestParam String cpfCliente) throws EndpointException {
+    @RequestMapping(value = "/{cpfCliente}", method = RequestMethod.GET)
+    public ResponseEntity<Cliente> buscarClientePorCpf(@PathVariable("cpfCliente") String cpfCliente) throws EndpointException {
 
         try {
-            Cliente cliente = clienteService.buscarClientePorNomeECpf(nomeCliente, cpfCliente);
+            Cliente cliente = clienteService.buscarClientePorCpf(cpfCliente);
 
             return ResponseEntity.ok(cliente);
         } catch (ApiClienteException e) {

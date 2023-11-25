@@ -12,8 +12,8 @@ public class ClienteService {
     @Autowired
     ClienteRepository clienteRepository;
 
-    public Cliente buscarClientePorNomeECpf(String nomeCliente, String cpfCliente) throws ApiClienteException {
-        Cliente cliente = clienteRepository.findByNomeAndCpf(nomeCliente, cpfCliente)
+    public Cliente buscarClientePorCpf(String cpfCliente) throws ApiClienteException {
+        Cliente cliente = clienteRepository.findByCpf(cpfCliente)
                 .orElseThrow(() -> new ApiClienteException("Cliente não encontrado a partir dos dados informados."));
 
         return cliente;
